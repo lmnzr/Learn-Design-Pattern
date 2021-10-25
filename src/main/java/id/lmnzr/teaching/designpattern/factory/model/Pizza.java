@@ -1,10 +1,11 @@
-package id.lmnzr.teaching.designpattern.factory.withfactory.model;
+package id.lmnzr.teaching.designpattern.factory.model;
 
 public abstract class Pizza {
     PizzaType type;
 
     protected Pizza(PizzaType type) {
         this.type = type;
+        order();
     }
 
     public PizzaType getType() {

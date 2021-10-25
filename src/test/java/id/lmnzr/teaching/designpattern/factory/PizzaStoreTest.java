@@ -1,6 +1,7 @@
 package id.lmnzr.teaching.designpattern.factory;
 
 import id.lmnzr.teaching.designpattern.factory.nofactory.NoFactoryPizzaStore;
+import id.lmnzr.teaching.designpattern.factory.withfactory.FactoryPizzaStore;
 import org.junit.jupiter.api.Test;
 
 import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOut;
@@ -10,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class PizzaStoreTest {
     @Test
     void givenMushroomRequest_whenOrder_thenShouldDeliverMushroomPizza() throws Exception {
-        String order = tapSystemOut(() -> {
-            NoFactoryPizzaStore.orderPizza("mushroom");
-        });
-
 //        String order = tapSystemOut(() -> {
-//            FactoryPizzaStore.orderPizza("mushroom");
+//            NoFactoryPizzaStore.orderPizza("mushroom");
 //        });
+
+        String order = tapSystemOut(() -> {
+            FactoryPizzaStore.orderPizza("mushroom");
+        });
 
         assertEquals(
             "make the base\n" +

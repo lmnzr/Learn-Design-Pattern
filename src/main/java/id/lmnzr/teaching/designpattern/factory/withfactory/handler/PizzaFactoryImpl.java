@@ -1,32 +1,37 @@
 package id.lmnzr.teaching.designpattern.factory.withfactory.handler;
 
-import id.lmnzr.teaching.designpattern.factory.withfactory.model.*;
+import id.lmnzr.teaching.designpattern.factory.model.*;
 
-import java.util.*;
+import static id.lmnzr.teaching.designpattern.factory.model.PizzaType.*;
 
-public class PizzaFactoryImpl implements PizzaFactory {
+public class PizzaFactoryImpl {
 
-    private static final List<Pizza> pizzaList = Arrays.asList(
-        new MushroomPizza(),
-        new PepperoniPizza(),
-        new ChickenPizza(),
-        new BeefPizza()
-    );
-
-    private final Map<PizzaType, Pizza> pizzaMap;
-
-    public PizzaFactoryImpl() {
-        pizzaMap = new EnumMap<>(PizzaType.class);
-        pizzaList.forEach(pizza -> pizzaMap.put(pizza.getType(), pizza));
-    }
-
-    @Override
     public Pizza createPizza(String type) {
-        Pizza pizza = pizzaMap.get(PizzaType.getFromType(type));
+        Pizza pizza = getPizza(PizzaType.getFromType(type));
         if (pizza == null) {
             throw new IllegalArgumentException("can't order " + type + " pizza");
         }
 
         return pizza;
+    }
+
+    private Pizza getPizza(PizzaType type) {
+        if (MUSHROOM.equals(type)) {
+            return new MushroomPizza();
+        }
+
+        if (PEPPERONI.equals(type)) {
+            return new PepperoniPizza();
+        }
+
+        if (CHICKEN.equals(type)) {
+            return new ChickenPizza();
+        }
+
+        if (BEEF.equals(type)) {
+            return new BeefPizza();
+        }
+
+        return null;
     }
 }

@@ -1,4 +1,4 @@
-package id.lmnzr.teaching.designpattern.factory.withfactory.model;
+package id.lmnzr.teaching.designpattern.factory.model;
 
 public final class ChickenPizza extends Pizza{
     public ChickenPizza() {
